@@ -11,7 +11,7 @@ from src.components.data_transformation import DataTransformation
 # from src.components.data_transformation import DataTransformationConfig
 
 # from src.components.model_trainer import ModelTrainerConfig
-# from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainer
 
 # This dataclass decorators helps to create the class variables with out using the __init__ method
 @dataclass
@@ -58,7 +58,7 @@ if __name__=="__main__":
     data_transformation=DataTransformation()
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data_path,test_data_path)
 
-    # modeltrainer=ModelTrainer()
-    # print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
 
 
