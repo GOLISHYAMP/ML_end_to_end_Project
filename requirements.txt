@@ -4,4 +4,7 @@ matplotlib
 seaborn
 scikit-learn
 setuptools
--e .
+xgboost
+catboost
+xgboost
+# -e .
