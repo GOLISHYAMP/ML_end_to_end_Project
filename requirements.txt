@@ -7,5 +7,5 @@ setuptools
 xgboost
 catboost
 xgboost
-pickle
+streamlit
 # -e .
