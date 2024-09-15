@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+
+from src.pipeline import predict_pipeline
  
 st.write("""
 # Predict Math Score
@@ -41,33 +43,27 @@ with st.form("my_form"):
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
-        st.write("reading score is ", reading_score)
-        st.write("writing score is ", writing_score)
-        st.write("You selected:", gender)
-        st.write("You selected:", race_ethnicity)
-        st.write("You selected:", parental_level_of_education)
-        st.write("You selected:", lunch)
-        st.write("You selected:", test_preparation_course)
-        st.write("Submitted")
+        data=predict_pipeline.CustomData(
+                    gender=gender,
+                    race_ethnicity=race_ethnicity,
+                    parental_level_of_education=parental_level_of_education,
+                    lunch=lunch,
+                    test_preparation_course=test_preparation_course,
+                    reading_score=float(reading_score),
+                    writing_score=float(writing_score)
+
+                )
+        pred_df=data.get_data_as_data_frame()
+        print(pred_df)
+        print("Before Prediction")
+
+        predict_pipeline=predict_pipeline.PredictPipeline()
+        print("Mid Prediction")
+        results=predict_pipeline.predict(pred_df)
+        print("after Prediction")
+        results=results[0]
+        st.write("Predicted Math score is : ", results)
     
 
 
-#  data=CustomData(
-#             gender=request.form.get('gender'),
-#             race_ethnicity=request.form.get('ethnicity'),
-#             parental_level_of_education=request.form.get('parental_level_of_education'),
-#             lunch=request.form.get('lunch'),
-#             test_preparation_course=request.form.get('test_preparation_course'),
-#             reading_score=float(request.form.get('writing_score')),
-#             writing_score=float(request.form.get('reading_score'))
-
-#         )
-#         pred_df=data.get_data_as_data_frame()
-#         print(pred_df)
-#         print("Before Prediction")
-
-#         predict_pipeline=PredictPipeline()
-#         print("Mid Prediction")
-#         results=predict_pipeline.predict(pred_df)
-#         print("after Prediction")
-#         return render_template('home.html',results=results[0])
+        
