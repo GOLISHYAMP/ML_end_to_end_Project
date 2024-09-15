@@ -61,7 +61,7 @@ with st.form("my_form"):
         print("Mid Prediction")
         results=predict_pipeline.predict(pred_df)
         print("after Prediction")
-        results=results[0]
+        results=round(results[0], 2)
         st.write("Predicted Math score is : ", results)
     
 
